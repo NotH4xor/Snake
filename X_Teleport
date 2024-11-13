@@ -1,0 +1,52 @@
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local blobsFolder = workspace:WaitForChild("Blobs")
+
+local teleporting = false
+local currentCoroutine = nil
+
+-- function to teleport player to each object in Blobs rapidly
+local function teleportPlayerRapidlyToBlobs()
+while teleporting do
+local blobs = blobsFolder:GetChildren()
+for _, currentPart in ipairs(blobs) do
+if not teleporting then return end -- exit loop if teleporting is turned off
+if currentPart:IsA("BasePart") then
+humanoidRootPart.CFrame = currentPart.CFrame
+RunService.Heartbeat:Wait() -- wait for the next frame
+end
+end
+RunService.Heartbeat:Wait() -- wait before checking again
+end
+end
+
+-- function to toggle teleporting state
+local function toggleTeleporting()
+teleporting = not teleporting
+print("Teleporting toggled: " .. tostring(teleporting))
+if teleporting then
+if currentCoroutine then
+coroutine.close(currentCoroutine)
+end
+currentCoroutine = coroutine.create(teleportPlayerRapidlyToBlobs)
+coroutine.resume(currentCoroutine)
+end
+end
+
+-- function to handle input
+local function onInputBegan(input, gameProcessedEvent)
+if input.KeyCode == Enum.KeyCode.X and not gameProcessedEvent then
+toggleTeleporting()
+end
+end
+
+UserInputService.InputBegan:Connect(onInputBegan)
+
+-- handle character respawn
+player.CharacterAdded:Connect(function(newCharacter)
+character = newCharacter
+humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+end)
