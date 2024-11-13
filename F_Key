@@ -8,7 +8,7 @@ local Humanoid = Character:WaitForChild("Humanoid")
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 
 local flying = false
-local flySpeed = 82 -- Set this to your desired speed
+local flySpeed = 78 -- Set this to your desired speed
 local originalGravity = workspace.Gravity
 
 LocalPlayer.CharacterAdded:Connect(function(newCharacter)
