@@ -1,3 +1,11 @@
+if _G.ScriptRanFlagXKEY then
+print("Script already ran, exiting...")
+return
+end
+_G.ScriptRanFlagXKEY = true
+
+print("Script is running for the first time...")
+
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local player = game.Players.LocalPlayer
@@ -50,3 +58,5 @@ player.CharacterAdded:Connect(function(newCharacter)
 character = newCharacter
 humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 end)
+
+print("Script execution complete.")
