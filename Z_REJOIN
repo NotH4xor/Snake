@@ -1,3 +1,11 @@
+if _G.ScriptRanFlagZKEY then
+print("Script already ran, exiting...")
+return
+end
+_G.ScriptRanFlagZKEY = true
+
+print("Script is running for the first time...")
+
 local UserInputService = game:GetService("UserInputService")
 
 local function onKeyPress(input, gameProcessed)
@@ -12,3 +20,6 @@ local function onKeyPress(input, gameProcessed)
 end
 
 UserInputService.InputBegan:Connect(onKeyPress)
+
+
+print("Script execution complete.")
