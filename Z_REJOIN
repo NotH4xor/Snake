@@ -1,0 +1,14 @@
+local UserInputService = game:GetService("UserInputService")
+
+local function onKeyPress(input, gameProcessed)
+    if input.KeyCode == Enum.KeyCode.Z and not gameProcessed then
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("Honeypot")
+            :WaitForChild("Internal")
+            :WaitForChild("RemoteStorage")
+            :WaitForChild("TeleportToProServer - RemoteEvent")
+            :FireServer()
+    end
+end
+
+UserInputService.InputBegan:Connect(onKeyPress)
