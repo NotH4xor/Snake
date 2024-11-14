@@ -1,3 +1,11 @@
+if _G.ScriptRanFlagFKEY then
+print("Script already ran, exiting...")
+return
+end
+_G.ScriptRanFlagFKEY = true
+
+print("Script is running for the first time...")
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -51,3 +59,5 @@ workspace.Gravity = originalGravity
 end
 end
 end)
+
+print("Script execution complete.")
