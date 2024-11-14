@@ -4,6 +4,7 @@ local scripts = {
     'https://raw.githubusercontent.com/NotH4xor/Snake/main/X_Teleport',
     'https://raw.githubusercontent.com/NotH4xor/Snake/main/R_Key',
     'https://raw.githubusercontent.com/NotH4xor/Snake/main/F_Key',
+    'https://raw.githubusercontent.com/NotH4xor/Snake/main/Z_REJOIN',
 }
 for _, url in ipairs(scripts) do
     local thread = coroutine.create(function()
